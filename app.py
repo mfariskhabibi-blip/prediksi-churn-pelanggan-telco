@@ -917,4 +917,3 @@ elif page == "📈 Analisis Visual Lengkap":
 # Footer
 st.divider()
 st.caption("© 2024 Telco Churn Analytics Dashboard | Data berdasarkan analisis Telco Customer Churn dataset")
-
