@@ -23,11 +23,33 @@ with st.sidebar:
     st.title("📊 Menu Utama")
     page = st.radio("Navigasi:", ["🏠 Dashboard Utama", "🔮 Prediksi Churn Pelanggan", "📈 Analisis Visual Lengkap"])
     st.info("Gunakan menu ini untuk berpindah antara fitur analisis.")
+    
+    # Informasi Developer
+    st.divider()
+    st.markdown("### 👨‍💻 Developer")
+    st.markdown("**Nama:** Muhammad Faris Khabibi")
+    st.markdown("**NIM:** 23.230.0089")
+    st.markdown("**Mata Kuliah:** Data Mining")
+    st.markdown("**Program Studi:** Teknik Informatika")
 
 # --- HALAMAN 1: DASHBOARD UTAMA ---
 if page == "🏠 Dashboard Utama":
     st.title("📊 Dashboard Analisis Churn - Telco Customer")
     st.markdown("### Ringkasan Kinerja Model dan Insight Utama")
+    
+    # Informasi Developer pada dashboard utama
+    with st.expander("👨‍💻 Informasi Developer", expanded=False):
+        col_dev1, col_dev2 = st.columns([1, 3])
+        with col_dev1:
+            st.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=100)
+        with col_dev2:
+            st.markdown("""
+            **Nama:** Muhammad Faris Khabibi  
+            **NIM:** 23.230.0089  
+            **Program Studi:** Teknik Informatika  
+            **Mata Kuliah:** Data Mining  
+            **Email:** 23.230.0089@student.unsika.ac.id
+            """)
     
     # Metrics Cards
     col1, col2, col3, col4 = st.columns(4)
@@ -94,11 +116,25 @@ if page == "🏠 Dashboard Utama":
                 f'{value:.2f}', va='center', fontsize=10)
     
     st.pyplot(fig)
+    
+    # Credit footer
+    st.divider()
+    st.caption("Dikembangkan oleh: **Muhammad Faris Khabibi** (NIM: 23.230.0089) - Proyek Data Mining")
 
 # --- HALAMAN 2: PREDIKSI ---
 elif page == "🔮 Prediksi Churn Pelanggan":
     st.title("🎯 Prediksi Risiko Churn")
     st.write("Masukkan profil pelanggan untuk menghitung probabilitas churn.")
+    
+    # Informasi Developer
+    with st.expander("👨‍💻 Informasi Developer", expanded=False):
+        st.markdown("""
+        **Proyek Prediksi Churn Pelanggan**  
+        Dikembangkan oleh: **Muhammad Faris Khabibi**  
+        NIM: **23.230.0089**  
+        Mata Kuliah: **Data Mining**  
+        Teknologi: Python, Streamlit, Scikit-learn
+        """)
     
     with st.expander("📝 Cara Menggunakan", expanded=False):
         st.markdown("""
@@ -241,6 +277,9 @@ elif page == "🔮 Prediksi Churn Pelanggan":
                    ha='center', va='center', fontsize=20, fontweight='bold')
             
             st.pyplot(fig)
+            
+            # Credit kecil di bawah chart
+            st.caption("Model dikembangkan oleh: Muhammad Faris Khabibi (23.230.0089)")
         
         with col_result2:
             if prediction == 1:
@@ -292,11 +331,36 @@ elif page == "🔮 Prediksi Churn Pelanggan":
         }
         
         st.dataframe(pd.DataFrame(impact_data), use_container_width=True)
+        
+        # Footer credit
+        st.divider()
+        st.caption("Sistem Prediksi Churn © 2024 - Dikembangkan oleh: **Muhammad Faris Khabibi** (NIM: 23.230.0089)")
 
 # --- HALAMAN 3: VISUALISASI LENGKAP ---
 elif page == "📈 Analisis Visual Lengkap":
     st.title("📊 Dashboard Visualisasi Data Churn")
     st.markdown("### Insight Lengkap dari Dataset Telco Customer Churn")
+    
+    # Header dengan informasi developer
+    with st.expander("ℹ️ Tentang Dashboard Visualisasi", expanded=False):
+        st.markdown("""
+        ### Dashboard Analisis Visual Telco Churn
+        
+        **Dikembangkan oleh:** Muhammad Faris Khabibi  
+        **NIM:** 23.230.0089  
+        **Mata Kuliah:** Data Mining  
+        
+        **Fitur Dashboard:**
+        1. **Distribusi Umum** - Analisis demografi dan karakteristik dasar
+        2. **Korelasi & Hubungan** - Analisis hubungan antar variabel
+        3. **Analisis Layanan** - Dampak layanan terhadap churn
+        4. **Analisis Biaya** - Pengaruh biaya dan metode pembayaran
+        5. **Tren & Segmentasi** - Pola dan segmentasi pelanggan
+        
+        **Dataset:** Telco Customer Churn  
+        **Total Records:** 7,043 pelanggan  
+        **Churn Rate:** 26.5%
+        """)
     
     # Tab untuk berbagai visualisasi
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -325,6 +389,9 @@ elif page == "📈 Analisis Visual Lengkap":
             ax.axis('equal')
             ax.set_title('Distribusi Churn vs Non-Churn')
             st.pyplot(fig)
+            
+            # Credit dalam visualisasi
+            st.caption("Visualisasi oleh: Muhammad Faris Khabibi - 23.230.0089")
             
             # Gender distribution
             fig, ax = plt.subplots(figsize=(8, 6))
@@ -399,9 +466,18 @@ elif page == "📈 Analisis Visual Lengkap":
             ax[1].set_title('Distribusi Tanggungan')
             
             st.pyplot(fig)
+            
+            # Credit untuk visualisasi
+            st.caption("Analisis Demografi - Muhammad Faris Khabibi (23.230.0089)")
     
     with tab2:
         st.header("Analisis Korelasi dan Hubungan antar Variabel")
+        
+        # Credit untuk analisis korelasi
+        st.markdown("""
+        *Analisis korelasi ini menunjukkan hubungan antara berbagai fitur yang mempengaruhi churn. 
+        Korelasi positif menunjukkan hubungan searah, sedangkan korelasi negatif menunjukkan hubungan berlawanan.*
+        """)
         
         # Correlation Heatmap
         st.subheader("Heatmap Korelasi Antar Fitur")
@@ -432,6 +508,26 @@ elif page == "📈 Analisis Visual Lengkap":
         ax.set_title('Korelasi Antar Fitur Utama')
         plt.colorbar(im, ax=ax)
         st.pyplot(fig)
+        
+        # Insight dari analisis korelasi
+        with st.expander("📊 Interpretasi Heatmap", expanded=False):
+            st.markdown("""
+            ### Interpretasi Korelasi:
+            
+            **Korelasi Kuat (|r| > 0.7):**
+            - `tenure` vs `TotalCharges`: +0.85
+            - Hubungan logis: semakin lama berlangganan, total biaya semakin tinggi
+            
+            **Korelasi Sedang (0.3 < |r| < 0.7):**
+            - `MonthlyCharges` vs `InternetService`: +0.45
+            - Layanan Fiber Optic biasanya lebih mahal
+            
+            **Korelasi Negatif Penting:**
+            - `Contract` vs `churn`: -0.40
+            - Kontrak panjang mengurangi kemungkinan churn
+            
+            **Analisis oleh:** Muhammad Faris Khabibi (23.230.0089)
+            """)
         
         # Scatter plot: Tenure vs Monthly Charges
         st.subheader("Segmentasi Pelanggan: Tenure vs Monthly Charges")
@@ -484,10 +580,18 @@ elif page == "📈 Analisis Visual Lengkap":
             🟢 **Risiko Rendah:**
             - Tenure tinggi (> 36 bulan)
             - Biaya berapapun
+            
+            ---
+            **Analisis Segmentasi**
+            Oleh: Muhammad Faris Khabibi
+            NIM: 23.230.0089
             """)
     
     with tab3:
         st.header("Analisis Layanan dan Dampaknya terhadap Churn")
+        
+        # Credit untuk analisis layanan
+        st.markdown("*Analisis dampak berbagai layanan terhadap tingkat churn pelanggan*")
         
         # Service Analysis in columns
         col1, col2 = st.columns(2)
@@ -529,6 +633,8 @@ elif page == "📈 Analisis Visual Lengkap":
             
             st.pyplot(fig)
             
+            st.caption("Analisis: Fiber Optic memiliki churn rate tertinggi (41.8%)")
+            
             # Tech Support Analysis
             st.subheader("Pengaruh Tech Support terhadap Churn")
             fig, ax = plt.subplots(figsize=(8, 6))
@@ -549,6 +655,8 @@ elif page == "📈 Analisis Visual Lengkap":
                        f'{rate}%', ha='center', va='bottom')
             
             st.pyplot(fig)
+            
+            st.caption("Pelanggan tanpa tech support 2.75x lebih mungkin churn")
         
         with col2:
             # Additional Services Analysis
@@ -615,9 +723,19 @@ elif page == "📈 Analisis Visual Lengkap":
                 ax.text(i, rate + 1, f'{rate}%', ha='center', va='bottom')
             
             st.pyplot(fig)
+            
+            st.caption("""
+            **Kesimpulan Analisis Layanan:**
+            - Kontrak month-to-month memiliki churn rate tertinggi (42.7%)
+            - Layanan keamanan mengurangi risiko churn signifikan
+            - Streaming services meningkatkan churn rate
+            """)
     
     with tab4:
         st.header("Analisis Biaya dan Metode Pembayaran")
+        
+        # Credit untuk analisis biaya
+        st.markdown("*Analisis pengaruh biaya dan metode pembayaran terhadap keputusan churn pelanggan*")
         
         # Monthly Charges Distribution
         st.subheader("Distribusi Biaya Bulanan")
@@ -672,6 +790,11 @@ elif page == "📈 Analisis Visual Lengkap":
             
             **Insight:**
             Pelanggan churn cenderung memiliki biaya bulanan lebih tinggi (≈ +37%)
+            
+            ---
+            **Analisis oleh:**
+            Muhammad Faris Khabibi
+            23.230.0089
             """)
         
         st.divider()
@@ -708,6 +831,24 @@ elif page == "📈 Analisis Visual Lengkap":
         
         plt.tight_layout()
         st.pyplot(fig)
+        
+        # Insight dari analisis pembayaran
+        with st.expander("💡 Insight Metode Pembayaran", expanded=False):
+            st.markdown("""
+            ### Analisis Mendalam Metode Pembayaran:
+            
+            **Electronic Check (45.3% churn rate):**
+            - Paling populer (33.6% pelanggan)
+            - Churn rate tertinggi (45.3%)
+            - **Rekomendasi:** Konversi ke automatic payment
+            
+            **Automatic Payments (Bank Transfer & Credit Card):**
+            - Churn rate rendah (16-18%)
+            - Retensi lebih baik
+            - **Rekomendasi:** Insentif untuk automatic payment
+            
+            **Analisis oleh:** Muhammad Faris Khabibi (23.230.0089)
+            """)
         
         # Paperless Billing Analysis
         st.subheader("Analisis Paperless Billing")
@@ -755,10 +896,18 @@ elif page == "📈 Analisis Visual Lengkap":
             - Tambahkan personalized email engagement
             - Tawarkan insentif untuk konversi ke paperless
             - Implementasi digital loyalty program
+            
+            ---
+            **Analisis Biaya & Pembayaran**
+            Oleh: Muhammad Faris Khabibi
+            NIM: 23.230.0089
             """)
     
     with tab5:
         st.header("Analisis Tren dan Segmentasi Pelanggan")
+        
+        # Credit untuk analisis tren
+        st.markdown("*Analisis pola churn berdasarkan tenure dan segmentasi pelanggan*")
         
         # Tenure Analysis
         st.subheader("Analisis Masa Berlangganan (Tenure)")
@@ -818,6 +967,11 @@ elif page == "📈 Analisis Visual Lengkap":
             **Strategy:**
             - Fokus pada onboarding (bulan 1-6)
             - Loyalty program dimulai bulan 7
+            
+            ---
+            **Analisis Tren**
+            Muhammad Faris Khabibi
+            23.230.0089
             """)
         
         st.divider()
@@ -859,6 +1013,8 @@ elif page == "📈 Analisis Visual Lengkap":
         
         st.pyplot(fig)
         
+        st.caption("Segmentasi oleh: Muhammad Faris Khabibi - Analisis Clustering Pelanggan")
+        
         # Customer Lifetime Value Analysis
         st.subheader("Analisis Customer Lifetime Value (CLV)")
         
@@ -895,6 +1051,24 @@ elif page == "📈 Analisis Visual Lengkap":
         
         plt.tight_layout()
         st.pyplot(fig)
+        
+        # Kesimpulan analisis tren
+        with st.expander("📈 Kesimpulan Analisis Tren", expanded=False):
+            st.markdown("""
+            ### Key Findings:
+            
+            1. **Tenure adalah prediktor terkuat** - Bulan pertama kritis
+            2. **Segmentasi efektif** untuk strategi retensi berbeda
+            3. **CLV meningkat signifikan** dengan tenure panjang
+            4. **Retention rate stabil** setelah bulan ke-6
+            
+            ### Rekomendasi Strategis:
+            - **Onboarding program** intensif bulan 1-6
+            - **Tiered loyalty program** berdasarkan tenure
+            - **Personalized retention** untuk setiap segment
+            
+            **Analisis oleh:** Muhammad Faris Khabibi (23.230.0089)
+            """)
     
     # Download button for insights
     st.divider()
@@ -913,7 +1087,35 @@ elif page == "📈 Analisis Visual Lengkap":
     with col_download3:
         if st.button("🔄 Refresh Dashboard", use_container_width=True):
             st.rerun()
+    
+    # Final credit untuk dashboard visualisasi
+    st.divider()
+    st.markdown("""
+    ### 📋 Tentang Dashboard Ini
+    
+    **Dashboard Analisis Visual Telco Churn**  
+    Dikembangkan sebagai bagian dari proyek Data Mining  
+    
+    **Developer:** Muhammad Faris Khabibi  
+    **NIM:** 23.230.0089  
+    **Program Studi:** Teknik Informatika  
+    **Universitas:** Universitas Singaperbangsa Karawang  
+    
+    **Fitur Utama:**
+    - 5 kategori analisis visual
+    - 15+ jenis visualisasi
+    - Insight berbasis data
+    - Rekomendasi actionable
+    """)
 
-# Footer
+# Footer utama aplikasi
 st.divider()
-st.caption("© 2024 Telco Churn Analytics Dashboard | Data berdasarkan analisis Telco Customer Churn dataset")
+st.markdown("""
+<div style='text-align: center; padding: 20px; background-color: #f0f2f6; border-radius: 10px;'>
+    <h3>📚 Proyek Data Mining - Analisis Churn Pelanggan</h3>
+    <p><b>Dikembangkan oleh:</b> Muhammad Faris Khabibi</p>
+    <p><b>NIM:</b> 23.230.0089 | <b>Program Studi:</b> Teknik Informatika</p>
+    <p><b>Mata Kuliah:</b> Data Mining | <b>Tahun:</b> 2024</p>
+    <p>© 2024 Telco Churn Analytics Dashboard | Data berdasarkan analisis Telco Customer Churn dataset</p>
+</div>
+""", unsafe_allow_html=True)
