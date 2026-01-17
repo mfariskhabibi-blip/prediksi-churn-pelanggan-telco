@@ -7,11 +7,7 @@ import numpy as np
 from io import BytesIO
 
 # Konfigurasi Halaman
-st.set_page_config(
-    page_title="Telco Churn Analytics", 
-    layout="wide",
-    page_icon="📊"
-)
+st.set_page_config(page_title="Telco Churn Analytics", layout="wide")
 
 # 1. Load Model & Fitur
 @st.cache_resource
@@ -27,43 +23,20 @@ with st.sidebar:
     st.title("📊 Menu Utama")
     page = st.radio("Navigasi:", ["🏠 Dashboard Utama", "🔮 Prediksi Churn Pelanggan", "📈 Analisis Visual Lengkap"])
     st.info("Gunakan menu ini untuk berpindah antara fitur analisis.")
-    
-    # Informasi Developer
-    st.divider()
-    st.markdown("### 👨‍💻 Developer Information")
-    st.markdown("""
-    **Nama:** Muh Faris Khabibi  
-    **NIM:** 23.230.0089  
-    **Program Studi:** Sistem Informasi  
-    **Institusi:** Institut Widya Pratama  
-    **Mata Kuliah:** Visualisasi Data  
-    **Tahun:** 2026
-    """)
-    
-    # Tambahkan logo institusi (simulasi)
-    st.divider()
-    st.markdown("### 🏫 Institut Widya Pratama")
-    st.markdown("*Center of Excellence in Information Technology*")
 
 # --- HALAMAN 1: DASHBOARD UTAMA ---
 if page == "🏠 Dashboard Utama":
-    # Header dengan identitas lengkap
-    col_header1, col_header2 = st.columns([3, 1])
+    st.title("📊 Dashboard Analisis Churn - Telco Customer")
     
-    with col_header1:
-        st.title("📊 Dashboard Analisis Churn - Telco Customer")
-        st.markdown("### Ringkasan Kinerja Model dan Insight Utama")
+    # Tambahkan informasi identitas Anda di sini
+    st.markdown("""
+    ### Tugas Akhir Visualisasi Data
+    **Nama:** Muh Faris Khabibi  
+    **NIM:** 23.230.0089  
+    **Program Studi:** Sistem Informasi  
+    """)
     
-    with col_header2:
-        with st.expander("👨‍🎓 Identitas", expanded=False):
-            st.markdown("""
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Mata Kuliah:** Visualisasi Data  
-            **Tahun:** 2026
-            """)
+    st.markdown("### Ringkasan Kinerja Model dan Insight Utama")
     
     # Metrics Cards
     col1, col2, col3, col4 = st.columns(4)
@@ -111,10 +84,6 @@ if page == "🏠 Dashboard Utama":
     
     # Feature Importance
     st.subheader("🔝 10 Faktor Paling Berpengaruh terhadap Churn")
-    
-    # Tambahkan credit untuk visualisasi
-    st.caption("Visualisasi oleh: Muh Faris Khabibi (23.230.0089) - Visualisasi Data 2026")
-    
     fig, ax = plt.subplots(figsize=(10, 6))
     
     # Data feature importance dari analisis
@@ -134,60 +103,11 @@ if page == "🏠 Dashboard Utama":
                 f'{value:.2f}', va='center', fontsize=10)
     
     st.pyplot(fig)
-    
-    # Credit footer khusus untuk dashboard utama
-    st.divider()
-    st.markdown("""
-    <div style='background-color: #f0f2f6; padding: 15px; border-radius: 10px; border-left: 5px solid #4ECDC4;'>
-        <h4 style='margin: 0; color: #2c3e50;'>📚 Tugas Visualisasi Data</h4>
-        <p style='margin: 5px 0; color: #34495e;'><b>Nama:</b> Muh Faris Khabibi</p>
-        <p style='margin: 5px 0; color: #34495e;'><b>NIM:</b> 23.230.0089</p>
-        <p style='margin: 5px 0; color: #34495e;'><b>Program Studi:</b> Sistem Informasi</p>
-        <p style='margin: 5px 0; color: #34495e;'><b>Institusi:</b> Institut Widya Pratama</p>
-        <p style='margin: 5px 0; color: #34495e;'><b>Tahun:</b> 2026</p>
-    </div>
-    """, unsafe_allow_html=True)
 
 # --- HALAMAN 2: PREDIKSI ---
 elif page == "🔮 Prediksi Churn Pelanggan":
-    # Header dengan identitas
-    col_header1, col_header2 = st.columns([3, 1])
-    
-    with col_header1:
-        st.title("🎯 Prediksi Risiko Churn")
-        st.write("Masukkan profil pelanggan untuk menghitung probabilitas churn.")
-    
-    with col_header2:
-        with st.expander("👨‍🎓 Identitas Mahasiswa", expanded=False):
-            st.markdown("""
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Mata Kuliah:** Visualisasi Data  
-            **Tahun:** 2026
-            """)
-    
-    # Informasi Developer
-    with st.expander("📋 Tentang Sistem Prediksi", expanded=False):
-        st.markdown("""
-        ### Sistem Prediksi Churn Pelanggan
-        
-        **Dikembangkan oleh:**  
-        Nama: Muh Faris Khabibi  
-        NIM: 23.230.0089  
-        Program Studi: Sistem Informasi  
-        Institusi: Institut Widya Pratama  
-        Mata Kuliah: Visualisasi Data  
-        Tahun: 2026
-        
-        **Teknologi yang digunakan:**
-        - Python
-        - Streamlit
-        - Scikit-learn
-        - Matplotlib
-        - Pandas
-        """)
+    st.title("🎯 Prediksi Risiko Churn")
+    st.write("Masukkan profil pelanggan untuk menghitung probabilitas churn.")
     
     with st.expander("📝 Cara Menggunakan", expanded=False):
         st.markdown("""
@@ -250,12 +170,7 @@ elif page == "🔮 Prediksi Churn Pelanggan":
             phone_service = st.selectbox("Layanan Telepon", ['No', 'Yes'])
             multiple_lines = st.selectbox("Multiple Lines", ['No', 'Yes', 'No phone service'])
         
-        # Submit button dengan identitas
-        col_submit1, col_submit2 = st.columns([3, 1])
-        with col_submit1:
-            submitted = st.form_submit_button("🚀 Analisis Sekarang", use_container_width=True)
-        with col_submit2:
-            st.caption("By: Muh Faris Khabibi")
+        submitted = st.form_submit_button("🚀 Analisis Sekarang", use_container_width=True)
     
     if submitted:
         # Mapping untuk encoding
@@ -334,11 +249,6 @@ elif page == "🔮 Prediksi Churn Pelanggan":
             ax.text(probabilities[1], 0, f'{probabilities[1]*100:.1f}%', 
                    ha='center', va='center', fontsize=20, fontweight='bold')
             
-            # Tambah credit pada visualisasi
-            ax.text(0.5, -0.5, 'Visualisasi: Muh Faris Khabibi', 
-                   ha='center', va='center', fontsize=8, alpha=0.7, 
-                   transform=ax.transAxes)
-            
             st.pyplot(fig)
         
         with col_result2:
@@ -391,68 +301,11 @@ elif page == "🔮 Prediksi Churn Pelanggan":
         }
         
         st.dataframe(pd.DataFrame(impact_data), use_container_width=True)
-        
-        # Footer dengan identitas lengkap
-        st.divider()
-        st.markdown("""
-        <div style='background-color: #e8f4fc; padding: 15px; border-radius: 10px; border-left: 5px solid #3498db;'>
-            <h5 style='margin: 0 0 10px 0; color: #2c3e50;'>📋 Sistem Prediksi Churn</h5>
-            <p style='margin: 5px 0; font-size: 14px;'><b>Dikembangkan oleh:</b> Muh Faris Khabibi</p>
-            <p style='margin: 5px 0; font-size: 14px;'><b>NIM:</b> 23.230.0089 | <b>Prodi:</b> Sistem Informasi</p>
-            <p style='margin: 5px 0; font-size: 14px;'><b>Institusi:</b> Institut Widya Pratama</p>
-            <p style='margin: 5px 0; font-size: 14px;'><b>Mata Kuliah:</b> Visualisasi Data | <b>Tahun:</b> 2026</p>
-        </div>
-        """, unsafe_allow_html=True)
 
 # --- HALAMAN 3: VISUALISASI LENGKAP ---
 elif page == "📈 Analisis Visual Lengkap":
-    # Header utama dengan identitas
-    col_header1, col_header2 = st.columns([3, 1])
-    
-    with col_header1:
-        st.title("📊 Dashboard Visualisasi Data Churn")
-        st.markdown("### Insight Lengkap dari Dataset Telco Customer Churn")
-    
-    with col_header2:
-        with st.expander("👨‍🎓 Identitas Mahasiswa", expanded=True):
-            st.markdown("""
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Mata Kuliah:** Visualisasi Data  
-            **Tahun:** 2026
-            """)
-    
-    # Header dengan informasi developer
-    with st.expander("📘 Tentang Proyek Visualisasi Data", expanded=False):
-        st.markdown("""
-        ### 🎓 Tugas Akhir Visualisasi Data
-        
-        **Judul:** Analisis dan Visualisasi Data Churn Pelanggan Telco  
-        **Dosen Pengampu:** [Nama Dosen]  
-        **Semester:** [Semester]  
-        
-        **Identitas Mahasiswa:**
-        - **Nama:** Muh Faris Khabibi
-        - **NIM:** 23.230.0089
-        - **Program Studi:** Sistem Informasi
-        - **Fakultas:** Ilmu Komputer
-        - **Institusi:** Institut Widya Pratama
-        - **Tahun Akademik:** 2026
-        
-        **Deskripsi Proyek:**
-        Dashboard ini merupakan implementasi lengkap dari mata kuliah Visualisasi Data
-        yang bertujuan untuk menganalisis faktor-faktor yang mempengaruhi churn pelanggan
-        pada perusahaan telekomunikasi.
-        
-        **Teknik Visualisasi yang digunakan:**
-        1. Chart Bar & Pie untuk distribusi data
-        2. Heatmap untuk korelasi
-        3. Scatter Plot untuk segmentasi
-        4. KDE Plot untuk distribusi kontinu
-        5. Line Chart untuk tren
-        """)
+    st.title("📊 Dashboard Visualisasi Data Churn")
+    st.markdown("### Insight Lengkap dari Dataset Telco Customer Churn")
     
     # Tab untuk berbagai visualisasi
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -464,14 +317,12 @@ elif page == "📈 Analisis Visual Lengkap":
     ])
     
     with tab1:
-        st.header("📊 Distribusi Data Demografi dan Umum")
-        st.caption("Visualisasi oleh: Muh Faris Khabibi (23.230.0089) - Visualisasi Data 2026")
+        st.header("Distribusi Data Demografi dan Umum")
         
         col1, col2 = st.columns(2)
         
         with col1:
             # Distribution of Churn
-            st.subheader("Distribusi Churn vs Non-Churn")
             fig, ax = plt.subplots(figsize=(8, 6))
             labels = ['Loyal (No Churn)', 'Churn']
             sizes = [5174, 1869]
@@ -482,16 +333,9 @@ elif page == "📈 Analisis Visual Lengkap":
                   autopct='%1.1f%%', shadow=True, startangle=90)
             ax.axis('equal')
             ax.set_title('Distribusi Churn vs Non-Churn')
-            
-            # Tambah credit di dalam visualisasi
-            ax.text(0.5, -0.1, 'Muh Faris Khabibi - 23.230.0089', 
-                   ha='center', va='center', transform=ax.transAxes, 
-                   fontsize=9, alpha=0.7)
-            
             st.pyplot(fig)
             
             # Gender distribution
-            st.subheader("Distribusi berdasarkan Gender")
             fig, ax = plt.subplots(figsize=(8, 6))
             gender_data = {
                 'Laki-laki': {'Loyal': 2500, 'Churn': 900},
@@ -512,17 +356,10 @@ elif page == "📈 Analisis Visual Lengkap":
             ax.set_xticks(x)
             ax.set_xticklabels(gender_data.keys())
             ax.legend()
-            
-            # Tambah credit
-            ax.text(0.5, -0.15, 'Institut Widya Pratama - Visualisasi Data 2026', 
-                   ha='center', va='center', transform=ax.transAxes, 
-                   fontsize=8, alpha=0.6)
-            
             st.pyplot(fig)
         
         with col2:
             # Senior Citizen distribution
-            st.subheader("Distribusi berdasarkan Senior Citizen")
             fig, ax = plt.subplots(figsize=(8, 6))
             senior_data = {
                 'Bukan Senior': {'Loyal': 4500, 'Churn': 1400},
@@ -551,15 +388,9 @@ elif page == "📈 Analisis Visual Lengkap":
                     ax.text(bar.get_x() + bar.get_width()/2., height,
                            f'{int(height)}', ha='center', va='bottom')
             
-            # Tambah identitas
-            ax.text(0.5, -0.12, 'By: Muh Faris Khabibi | NIM: 23.230.0089', 
-                   ha='center', va='center', transform=ax.transAxes, 
-                   fontsize=9, style='italic')
-            
             st.pyplot(fig)
             
             # Partner & Dependents
-            st.subheader("Distribusi Partner & Tanggungan")
             fig, ax = plt.subplots(1, 2, figsize=(12, 5))
             
             # Partner
@@ -576,37 +407,13 @@ elif page == "📈 Analisis Visual Lengkap":
                      colors=['#118AB2', '#EF476F'])
             ax[1].set_title('Distribusi Tanggungan')
             
-            # Tambah credit
-            fig.suptitle('Analisis Demografi - Muh Faris Khabibi (23.230.0089)', 
-                        y=0.05, fontsize=10, alpha=0.7)
-            
             st.pyplot(fig)
     
     with tab2:
-        st.header("🔗 Analisis Korelasi dan Hubungan antar Variabel")
-        st.caption("Analisis oleh: Muh Faris Khabibi - Sistem Informasi - Institut Widya Pratama 2026")
+        st.header("Analisis Korelasi dan Hubungan antar Variabel")
         
         # Correlation Heatmap
         st.subheader("Heatmap Korelasi Antar Fitur")
-        
-        # Deskripsi analisis
-        with st.expander("ℹ️ Tentang Analisis Korelasi", expanded=False):
-            st.markdown("""
-            ### Analisis Korelasi Pearson
-            
-            **Metode:** Pearson Correlation Coefficient  
-            **Interpretasi:**
-            - **+1.0:** Korelasi positif sempurna
-            - **0.0:** Tidak ada korelasi
-            - **-1.0:** Korelasi negatif sempurna
-            
-            **Analisis dilakukan oleh:**
-            - Nama: Muh Faris Khabibi
-            - NIM: 23.230.0089
-            - Mata Kuliah: Visualisasi Data
-            - Tahun: 2026
-            """)
-        
         fig, ax = plt.subplots(figsize=(12, 10))
         
         # Sample correlation data (dari analisis)
@@ -633,11 +440,6 @@ elif page == "📈 Analisis Visual Lengkap":
         
         ax.set_title('Korelasi Antar Fitur Utama')
         plt.colorbar(im, ax=ax)
-        
-        # Tambah credit di visualisasi
-        ax.text(0.5, -0.05, 'Visualisasi Korelasi - Muh Faris Khabibi (23.230.0089)', 
-               ha='center', va='center', transform=ax.transAxes, fontsize=10)
-        
         st.pyplot(fig)
         
         # Scatter plot: Tenure vs Monthly Charges
@@ -672,24 +474,11 @@ elif page == "📈 Analisis Visual Lengkap":
                                          markerfacecolor='red', markersize=10, label='Churn')]
             ax.legend(handles=legend_elements)
             
-            # Tambah identitas
-            ax.text(0.5, -0.1, 'Institut Widya Pratama - Visualisasi Data 2026', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=9, alpha=0.7)
-            
             st.pyplot(fig)
         
         with col2:
             st.markdown("""
-            ### 🎓 Identitas Analis
-            
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Mata Kuliah:** Visualisasi Data  
-            **Tahun:** 2026
-            
-            ### 📈 Insight:
+            ### Insight:
             
             **Kategori Pelanggan:**
             
@@ -707,8 +496,7 @@ elif page == "📈 Analisis Visual Lengkap":
             """)
     
     with tab3:
-        st.header("📱 Analisis Layanan dan Dampaknya terhadap Churn")
-        st.caption("Analisis Visualisasi Data oleh: Muh Faris Khabibi (23.230.0089)")
+        st.header("Analisis Layanan dan Dampaknya terhadap Churn")
         
         # Service Analysis in columns
         col1, col2 = st.columns(2)
@@ -748,10 +536,6 @@ elif page == "📈 Analisis Visual Lengkap":
             ax2.set_ylim(0, 50)
             ax2.legend(loc='upper right')
             
-            # Tambah credit
-            ax.text(0.5, -0.12, 'Analisis oleh: Muh Faris Khabibi | NIM: 23.230.0089', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=9)
-            
             st.pyplot(fig)
             
             # Tech Support Analysis
@@ -772,10 +556,6 @@ elif page == "📈 Analisis Visual Lengkap":
             for bar, rate in zip(bars, tech_data['Churn_Rate']):
                 ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
                        f'{rate}%', ha='center', va='bottom')
-            
-            # Tambah identitas
-            ax.text(0.5, -0.15, 'Institut Widya Pratama - Sistem Informasi 2026', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=8, alpha=0.6)
             
             st.pyplot(fig)
         
@@ -817,10 +597,6 @@ elif page == "📈 Analisis Visual Lengkap":
             # Hide empty subplot
             axes[-1].axis('off')
             
-            # Tambah judul utama dengan identitas
-            fig.suptitle('Analisis Layanan Tambahan - Muh Faris Khabibi (23.230.0089)', 
-                        y=1.02, fontsize=12, fontweight='bold')
-            
             plt.tight_layout()
             st.pyplot(fig)
             
@@ -847,15 +623,10 @@ elif page == "📈 Analisis Visual Lengkap":
             for i, rate in enumerate(contract_data['Churn_Rate']):
                 ax.text(i, rate + 1, f'{rate}%', ha='center', va='bottom')
             
-            # Tambah credit
-            ax.text(0.5, -0.12, 'Visualisasi Data 2026 - Institut Widya Pratama', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=9, alpha=0.7)
-            
             st.pyplot(fig)
     
     with tab4:
-        st.header("💰 Analisis Biaya dan Metode Pembayaran")
-        st.caption("Dianalisis oleh: Muh Faris Khabibi | Prodi Sistem Informasi | IWP 2026")
+        st.header("Analisis Biaya dan Metode Pembayaran")
         
         # Monthly Charges Distribution
         st.subheader("Distribusi Biaya Bulanan")
@@ -892,23 +663,11 @@ elif page == "📈 Analisis Visual Lengkap":
             ax.legend()
             ax.grid(True, alpha=0.3)
             
-            # Tambah identitas
-            ax.text(0.5, -0.1, 'Muh Faris Khabibi - 23.230.0089 - Visualisasi Data', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=9)
-            
             st.pyplot(fig)
         
         with col2:
             st.markdown("""
-            ### 🎓 Identitas Analis
-            
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Tahun:** 2026
-            
-            ### 📊 Statistik Biaya:
+            ### Statistik Biaya:
             
             **Pelanggan Loyal:**
             - Rata-rata: $55.20
@@ -956,10 +715,6 @@ elif page == "📈 Analisis Visual Lengkap":
             ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
                     f'{rate}%', ha='center', va='bottom')
         
-        # Tambah credit di figure
-        fig.suptitle('Analisis Metode Pembayaran - Muh Faris Khabibi (23.230.0089)', 
-                    y=1.05, fontsize=12)
-        
         plt.tight_layout()
         st.pyplot(fig)
         
@@ -990,23 +745,11 @@ elif page == "📈 Analisis Visual Lengkap":
             for i, rate in enumerate(paperless_data['Churn_Rate']):
                 ax.text(i, rate + 1, f'{rate}%', ha='center', va='bottom')
             
-            # Tambah identitas
-            ax.text(0.5, -0.12, 'Sistem Informasi - Institut Widya Pratama 2026', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=9, alpha=0.7)
-            
             st.pyplot(fig)
         
         with col2:
             st.markdown("""
-            ### 🎓 Identitas Mahasiswa
-            
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Program Studi:** Sistem Informasi  
-            **Mata Kuliah:** Visualisasi Data  
-            **Tahun:** 2026
-            
-            ### 📈 Insight Paperless Billing:
+            ### Insight Paperless Billing:
             
             **Fakta Menarik:**
             - 59% pelanggan menggunakan paperless billing
@@ -1024,8 +767,7 @@ elif page == "📈 Analisis Visual Lengkap":
             """)
     
     with tab5:
-        st.header("📈 Analisis Tren dan Segmentasi Pelanggan")
-        st.caption("Analisis Tren oleh: Muh Faris Khabibi | NIM: 23.230.0089 | Visualisasi Data 2026")
+        st.header("Analisis Tren dan Segmentasi Pelanggan")
         
         # Tenure Analysis
         st.subheader("Analisis Masa Berlangganan (Tenure)")
@@ -1064,23 +806,11 @@ elif page == "📈 Analisis Visual Lengkap":
             ax2.set_ylim(0, 70)
             ax2.legend(loc='upper right')
             
-            # Tambah credit
-            ax.text(0.5, -0.1, 'Dianalisis oleh: Muh Faris Khabibi - 23.230.0089', 
-                   ha='center', va='center', transform=ax.transAxes, fontsize=10)
-            
             st.pyplot(fig)
         
         with col2:
             st.markdown("""
-            ### 🎓 Profil Analis
-            
-            **Nama:** Muh Faris Khabibi  
-            **NIM:** 23.230.0089  
-            **Prodi:** Sistem Informasi  
-            **Institusi:** Institut Widya Pratama  
-            **Tahun:** 2026
-            
-            ### 📊 Insight Tenure:
+            ### Insight Tenure:
             
             **Trend Churn Rate:**
             - 0-6 bulan: 60% churn
@@ -1136,10 +866,6 @@ elif page == "📈 Analisis Visual Lengkap":
         ax.grid(True, alpha=0.3)
         ax.legend()
         
-        # Tambah identitas
-        ax.text(0.5, -0.08, 'Visualisasi Data - Institut Widya Pratama - Muh Faris Khabibi', 
-               ha='center', va='center', transform=ax.transAxes, fontsize=10)
-        
         st.pyplot(fig)
         
         # Customer Lifetime Value Analysis
@@ -1176,44 +902,8 @@ elif page == "📈 Analisis Visual Lengkap":
         ax2.set_ylim(50, 105)
         ax2.grid(True, alpha=0.3)
         
-        # Tambah identitas di figure
-        fig.suptitle('Analisis CLV & Retention - Muh Faris Khabibi (23.230.0089)', 
-                    y=1.05, fontsize=12, fontweight='bold')
-        
         plt.tight_layout()
         st.pyplot(fig)
-        
-        # Kesimpulan akhir dengan identitas lengkap
-        st.divider()
-        st.markdown("""
-        <div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; border: 2px solid #dee2e6;'>
-            <h3 style='color: #2c3e50; text-align: center; margin-bottom: 20px;'>🎓 TUGAS AKHIR VISUALISASI DATA</h3>
-            
-            <div style='display: flex; justify-content: space-between;'>
-                <div style='flex: 1; padding-right: 20px;'>
-                    <h4 style='color: #3498db;'>Identitas Mahasiswa</h4>
-                    <p><strong>Nama:</strong> Muh Faris Khabibi</p>
-                    <p><strong>NIM:</strong> 23.230.0089</p>
-                    <p><strong>Program Studi:</strong> Sistem Informasi</p>
-                    <p><strong>Fakultas:</strong> Ilmu Komputer</p>
-                </div>
-                
-                <div style='flex: 1; padding-left: 20px; border-left: 1px solid #ddd;'>
-                    <h4 style='color: #3498db;'>Informasi Institusi</h4>
-                    <p><strong>Institusi:</strong> Institut Widya Pratama</p>
-                    <p><strong>Mata Kuliah:</strong> Visualisasi Data</p>
-                    <p><strong>Tahun Akademik:</strong> 2026</p>
-                    <p><strong>Dosen Pengampu:</strong> [Nama Dosen]</p>
-                </div>
-            </div>
-            
-            <div style='margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;'>
-                <p style='text-align: center; font-style: italic; color: #7f8c8d;'>
-                    "Dashboard ini merupakan implementasi lengkap teknik visualisasi data untuk analisis churn pelanggan"
-                </p>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
     
     # Download button for insights
     st.divider()
@@ -1233,30 +923,6 @@ elif page == "📈 Analisis Visual Lengkap":
         if st.button("🔄 Refresh Dashboard", use_container_width=True):
             st.rerun()
 
-# Footer utama aplikasi dengan identitas lengkap
+# Footer
 st.divider()
-st.markdown("""
-<div style='text-align: center; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;'>
-    <h3 style='margin-bottom: 15px;'>📚 PROYEK VISUALISASI DATA 2026</h3>
-    
-    <div style='display: flex; justify-content: center; gap: 40px; margin-bottom: 15px;'>
-        <div style='text-align: left;'>
-            <p style='margin: 5px 0;'><b>Mahasiswa:</b></p>
-            <p style='margin: 5px 0;'>Nama: Muh Faris Khabibi</p>
-            <p style='margin: 5px 0;'>NIM: 23.230.0089</p>
-            <p style='margin: 5px 0;'>Prodi: Sistem Informasi</p>
-        </div>
-        
-        <div style='text-align: left;'>
-            <p style='margin: 5px 0;'><b>Institusi:</b></p>
-            <p style='margin: 5px 0;'>Institut Widya Pratama</p>
-            <p style='margin: 5px 0;'>Mata Kuliah: Visualisasi Data</p>
-            <p style='margin: 5px 0;'>Tahun: 2026</p>
-        </div>
-    </div>
-    
-    <p style='margin-top: 15px; font-style: italic;'>
-        © 2026 Telco Churn Analytics Dashboard | All Rights Reserved
-    </p>
-</div>
-""", unsafe_allow_html=True)
+st.caption("© 2024 Telco Churn Analytics Dashboard | Data berdasarkan analisis Telco Customer Churn dataset")
